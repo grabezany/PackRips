@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pack Rips</title>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --bg:#0b0c10;
+    --p:#14161d;
+    --ln:#23262f;
+    --tx:#eceef4;
+    --mu:#7f8597;
+    color-scheme:dark;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px)
+  }
+
+  html {
+    scroll-padding-top:env(safe-area-inset-top,0px)
+  }
+
+  * {
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent
+  }
+
+  html,body {
+    height:100%;
+    margin:0
+  }
+
+  body {
+    background:var(--bg);
+    color:var(--tx);
+    font:500 15px system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    user-select:none;
+    -webkit-user-select:none
+  }
+
+  header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 18px;
+    height:52px;
+    flex:none
+  }
+
+  .logo {
+    font-weight:800;
+    letter-spacing:.3em;
+    font-size:13px
+  }
+
+  .cash {
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+    color:#4ade80
+  }
+
+  main {
+    flex:1;
+    position:relative;
+    min-height:0
+  }
+
+  .screen {
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:8px 16px 20px
+  }
+
+  .screen.on {
+    display:flex;
+    animation:in .3s
+  }
+
+  @keyframes in {
+    from {
+    opacity:0
+  }
+
+
+  }
+
+  h1,h2 {
+    font-weight:700;
+    margin:4px 0;
+    text-align:center;
+    letter-spacing:-.01em
+  }
+
+  h1 {
+    font-size:32px;
+    line-height:1.15
+  }
+
+  h2 {
+    font-size:22px
+  }
+
+  .sub {
+    color:var(--mu);
+    margin:2px 0 10px;
+    text-align:center
+  }
+
+  .btn {
+    border:0;
+    border-radius:12px;
+    padding:14px 26px;
+    font:600 15px system-ui,sans-serif;
+    cursor:pointer;
+    min-width:220px
+  }
+
+  .btn:active {
+    transform:scale(.98)
+  }
+
+  .btn:disabled {
+    opacity:.35
+  }
+
+  .pri {
+    background:var(--tx);
+    color:#0b0c10
+  }
+
+  .sec {
+    background:none;
+    color:var(--tx);
+    border:1px solid var(--ln)
+  }
+
+  .lnk {
+    background:none;
+    border:0;
+    color:var(--mu);
+    font:600 14px system-ui;
+    padding:8px;
+    cursor:pointer
+  }
+
+  .col {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    margin-top:16px
+  }
+
+  nav {
+    display:flex;
+    flex:none;
+    border-top:1px solid var(--ln)
+  }
+
+  nav.hide {
+    display:none
+  }
+
+  nav button {
+    flex:1;
+    background:none;
+    border:0;
+    color:var(--mu);
+    padding:10px 0 12px;
+    font:600 11px system-ui;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px
+  }
+
+  nav button.on {
+    color:var(--tx)
+  }
+
+  nav svg {
+    width:22px;
+    height:22px
+  }
+
+  .ico {
+    display:grid;
+    place-items:center;
+    line-height:1
+  }
+
+  .ico svg {
+    width:1em;
+    height:1em
+  }
+
+  .ico img {
+    width:1em;
+    height:1em;
+    object-fit:contain
+  }
+
+  /* Pack cover */
+
+.pack {
+    position:relative;
+    width:15em;
+    height:22em;
+    border-radius:.8em;
+    background:linear-gradient(170deg,var(--c1),var(--c2));
+    color:#fff;
+    text-align:center;
+    overflow:hidden
+  }
+
+  .band {
+    position:absolute;
+    inset:0 0 auto;
+    height:14%;
+    background:var(--c2);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 1.4em;
+    font-size:.6em;
+    font-weight:700;
+    letter-spacing:.25em
+  }
+
+  .band span {
+    opacity:.8
+  }
+
+  .pb {
+    position:absolute;
+    inset:14% 0 9%;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:.5em
+  }
+
+  .rays {
+    position:absolute;
+    left:50%;
+    top:36%;
+    width:22em;
+    height:22em;
+    margin:-11em 0 0 -11em;
+    background:radial-gradient(circle,rgba(255,255,255,.2),transparent 62%)
+  }
+
+  .ring {
+    position:relative;
+    width:5.6em;
+    height:5.6em;
+    border-radius:50%;
+    border:.14em solid rgba(255,255,255,.9);
+    background:rgba(0,0,0,.28);
+    outline:.12em dotted rgba(255,255,255,.55);
+    outline-offset:.35em;
+    display:grid;
+    place-items:center
+  }
+
+  .ring .ico {
+    font-size:3em
+  }
+
+  .pn {
+    position:relative;
+    font-weight:800;
+    font-size:1.5em;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding-left:.2em;
+    margin-top:.4em
+  }
+
+  .tag {
+    position:relative;
+    font-size:.65em;
+    letter-spacing:.25em;
+    opacity:.85;
+    font-weight:600
+  }
+
+  .dots {
+    position:relative;
+    display:flex;
+    gap:.4em
+  }
+
+  .dots i {
+    width:.55em;
+    height:.55em;
+    border-radius:50%
+  }
+
+  .price {
+    position:relative;
+    margin-top:.3em;
+    border:.1em solid rgba(255,255,255,.6);
+    border-radius:99px;
+    padding:.2em .9em;
+    font-size:.85em;
+    font-weight:700
+  }
+
+  .foot {
+    position:absolute;
+    inset:auto 0 0;
+    height:9%;
+    background:var(--c2);
+    display:grid;
+    place-items:center;
+    font-size:.58em;
+    font-weight:700;
+    letter-spacing:.25em;
+    border-radius:0 0 1.4em 1.4em
+  }
+
+
+  /* Basketball pack artwork */
+  .pack {
+    background:radial-gradient(ellipse at 50% 42%, color-mix(in srgb,var(--c1) 88%,white), transparent 55%),
+      linear-gradient(155deg,var(--c1),var(--c2) 78%);
+    border:1px solid rgba(255,255,255,.32);
+    box-shadow:inset 0 0 30px rgba(0,0,0,.24),0 12px 28px rgba(0,0,0,.28)
+  }
+  .band,.foot {background:rgba(8,12,20,.34);backdrop-filter:blur(5px)}
+  .band {font-size:.48em;letter-spacing:.16em;padding:0 1em}
+  .court-mark {position:absolute;inset:14% 7% 9%;border:1px solid rgba(255,255,255,.13);border-top:0;border-bottom:0;pointer-events:none}
+  .court-mark:before {content:"";position:absolute;left:50%;top:50%;width:7em;height:7em;border:1px solid rgba(255,255,255,.13);border-radius:50%;transform:translate(-50%,-50%)}
+  .court-mark:after {content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px solid rgba(255,255,255,.13)}
+  .ring {background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(0,0,0,.28));border-color:rgba(255,255,255,.82);box-shadow:0 0 28px rgba(255,255,255,.16)}
+  .basketball {width:4em;height:4em;fill:#e77b32;stroke:#54270f;stroke-width:3.2;stroke-linecap:round}
+  .pn {font-size:1.05em;line-height:1.25;letter-spacing:.055em;padding:0 .45em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+  .tag {letter-spacing:.2em}
+  .price {background:rgba(8,12,20,.25);backdrop-filter:blur(4px)}
+
+  .edge {
+    position:absolute;
+    top:14%;
+    bottom:9%;
+    width:.3em;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.4) 0 .3em,transparent .3em .6em)
+  }
+
+  .edge.l {
+    left:.5em
+  }
+
+  .edge.r {
+    right:.5em
+  }
+
+  .car {
+    position:relative;
+    display:flex;
+    gap:1.6em;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    width:100%;
+    padding:1.2em calc(50% - 7.5em);
+    font-size:14px;
+    scrollbar-width:none;
+    flex:none
+  }
+
+  .car::-webkit-scrollbar {
+    display:none
+  }
+
+  .pk {
+    flex:0 0 15em;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
+    transform:scale(.85);
+    opacity:.3;
+    transition:transform .25s,opacity .25s;
+    cursor:pointer;
+    backface-visibility:hidden
+  }
+
+  .pk.act {
+    transform:none;
+    opacity:1
+  }
+
+  .chips {
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:6px 0 14px
+  }
+
+  .chip {
+    padding:3px 9px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:600;
+    border:1px solid
+  }
+
+  /* Pack opening / tear interaction */
+
+.ostage {
+    flex:1;
+    display:grid;
+    place-items:center;
+    position:relative;
+    width:100%;
+    font-size:min(20px,4.8vw,3vh)
+  }
+
+  .rp {
+    position:relative;
+    width:15em;
+    height:22em;
+    touch-action:none;
+    cursor:grab
+  }
+
+  .rp .pack {
+    overflow:visible
+  }
+
+  .strip {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:16%;
+    background:var(--c2);
+    border-radius:.8em .8em 0 0;
+    z-index:2;
+    pointer-events:none;
+    clip-path:polygon(0 0,0 0,0 0)
+  }
+
+  .strip.off {
+    animation:fly .7s ease-in forwards
+  }
+
+  @keyframes fly {
+    to {
+    transform:translate(120%,-300%) rotate(80deg);
+    opacity:0
+  }
+
+
+  }
+
+  .dash {
+    position:absolute;
+    right:0;
+    top:14%;
+    border-top:2px dashed rgba(255,255,255,.6);
+    z-index:3;
+    pointer-events:none
+  }
+
+  .tp {
+    position:absolute;
+    top:14%;
+    width:1.1em;
+    height:1.1em;
+    margin:-.55em 0 0 -.55em;
+    border-radius:50%;
+    background:#fff;
+    z-index:4;
+    pointer-events:none;
+    animation:pl 1.3s infinite
+  }
+
+  @keyframes pl {
+    50% {
+    opacity:.35
+  }
+
+
+  }
+
+  .rp.pop {
+    animation:pop 1s .4s forwards
+  }
+
+  @keyframes pop {
+    40% {
+    transform:scale(1.08)
+  }
+
+  to {
+    transform:scale(1.4);
+    opacity:0
+  }
+
+
+  }
+
+  .burst {
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    opacity:0;
+    pointer-events:none;
+    z-index:5
+  }
+
+  .burst.go {
+    animation:bst 1.1s .4s ease-out forwards
+  }
+
+  @keyframes bst {
+    0% {
+    opacity:.8;
+    box-shadow:0 0 30px 10px var(--bc)
+  }
+
+  100% {
+    opacity:0;
+    box-shadow:0 0 90px 120vmax var(--bc)
+  }
+
+
+  }
+
+  /* Trading cards */
+
+.rstage {
+    position:relative;
+    flex:1;
+    width:100%;
+    font-size:min(21px,5.3vw,3.1vh);
+    cursor:pointer;
+    min-height:300px
+  }
+
+  .cw {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-10.5em 0 0 -7.5em;
+    width:15em;
+    height:21em;
+    perspective:1200px;
+    transition:transform .5s cubic-bezier(.3,.8,.3,1),opacity .5s
+  }
+
+  .card {
+    position:relative;
+    width:15em;
+    height:21em;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1)
+  }
+
+  .card.f {
+    transform:rotateY(180deg)
+  }
+
+  .face,.back {
+    position:absolute;
+    inset:0;
+    border-radius:.9em;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden
+  }
+
+  .back {
+    background:#12141b;
+    border:.12em solid var(--ln);
+    display:grid;
+    place-items:center;
+    font-size:2em;
+    font-weight:800;
+    letter-spacing:.2em;
+    color:var(--ln)
+  }
+
+  .face {
+    transform:rotateY(180deg);
+    border:.15em solid var(--rc);
+    background:#12141b;
+    display:flex;
+    flex-direction:column;
+    padding:.9em;
+    box-shadow:0 0 calc(var(--g)*1em) color-mix(in srgb,var(--rc) 55%,transparent)
+  }
+
+  .top {
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline
+  }
+
+  .top b {
+    font-size:1.9em;
+    line-height:1;
+    font-weight:800
+  }
+
+  .top span {
+    font-size:.7em;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--rc)
+  }
+
+  .art {
+    flex:1;
+    margin:.6em 0;
+    border-radius:.6em;
+    overflow:hidden;
+    display:grid;
+    place-items:center;
+    background:#0d0f14;
+    color:var(--rc)
+  }
+
+  .art .ico {
+    font-size:5em;
+    width:100%;
+    height:100%
+  }
+
+  .art .ico img {
+    width:100%;
+    height:100%;
+    object-fit:cover
+  }
+
+  .nm {
+    font-weight:700;
+    font-size:1.15em;
+    text-align:center
+  }
+
+  .tm {
+    font-size:.7em;
+    color:var(--mu);
+    text-align:center;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-top:.3em
+  }
+
+  #hint {
+    text-align:center;
+    min-height:44px;
+    color:var(--mu);
+    font-weight:600
+  }
+
+  #cnt {
+    color:var(--mu);
+    font-weight:600;
+    letter-spacing:.1em;
+    text-align:center;
+    padding-top:8px
+  }
+
+  #flash {
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0;
+    z-index:50
+  }
+
+  #flash.go {
+    animation:fl .7s
+  }
+
+  #flash.big {
+    animation-duration:1.2s
+  }
+
+  @keyframes fl {
+    0% {
+    opacity:.6
+  }
+
+  100% {
+    opacity:0
+  }
+
+
+  }
+
+  .pt {
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:60;
+    animation:pt .9s ease-out forwards
+  }
+
+  @keyframes pt {
+    to {
+    transform:translate(var(--dx),var(--dy)) scale(.2);
+    opacity:0
+  }
+
+
+  }
+
+  body.shake main {
+    animation:shk .5s
+  }
+
+  @keyframes shk {
+    20% {
+    transform:translate(-8px,4px)
+  }
+
+  40% {
+    transform:translate(7px,-5px)
+  }
+
+  60% {
+    transform:translate(-5px,-3px)
+  }
+
+  80% {
+    transform:translate(4px,4px)
+  }
+
+
+  }
+
+  .grid {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:2.5vw;
+    width:100%;
+    max-width:760px;
+    margin:10px 0
+  }
+
+  .grid .card,.lk {
+    font-size:min(9px,calc((100vw - 32px - 5vw)/45))
+  }
+
+  .cwrap {
+    position:relative;
+    cursor:pointer
+  }
+
+  .lk {
+    width:15em;
+    height:21em;
+    border-radius:.9em;
+    border:.12em dashed var(--ln);
+    display:grid;
+    place-items:center;
+    color:var(--ln)
+  }
+
+  .lk svg {
+    width:4em;
+    height:4em
+  }
+
+  .cnt {
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    background:var(--tx);
+    color:#0b0c10;
+    font:700 11px system-ui;
+    border-radius:99px;
+    padding:2px 7px;
+    z-index:2
+  }
+
+  .seg {
+    display:flex;
+    border:1px solid var(--ln);
+    border-radius:10px;
+    overflow:hidden;
+    margin:6px 0 8px
+  }
+
+  .seg button {
+    background:none;
+    border:0;
+    color:var(--mu);
+    padding:8px 24px;
+    font:600 14px system-ui;
+    cursor:pointer
+  }
+
+  .seg .on {
+    background:var(--p);
+    color:var(--tx)
+  }
+
+  .slab {
+    width:17.4em;
+    padding:.6em;
+    border-radius:1em;
+    background:linear-gradient(160deg,#2a2e3b,#161922);
+    border:.12em solid #4a5066
+  }
+
+  .sl-l {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:.6em;
+    background:#eceef4;
+    color:#0b0c10;
+    border-radius:.5em;
+    padding:.5em .7em;
+    margin-bottom:.6em;
+    font-size:.85em
+  }
+
+  .sl-l b {
+    display:block
+  }
+
+  .sl-l small {
+    display:block;
+    font-size:.7em;
+    color:#555;
+    font-weight:600;
+    letter-spacing:.05em
+  }
+
+  .sl-g {
+    text-align:center;
+    border-left:.3em solid;
+    padding-left:.7em;
+    min-width:4.4em
+  }
+
+  .sl-g b {
+    font-size:2em;
+    line-height:1
+  }
+
+  .sl-c {
+    display:grid;
+    place-items:center;
+    background:#0b0c10;
+    border-radius:.5em;
+    padding:.5em;
+    box-shadow:inset 0 0 1em #000
+  }
+
+  .grid .slab {
+    font-size:min(8.2px,calc((100vw - 32px - 5vw)/52))
+  }
+
+  .grid .slab .card,.sc .slab .card {
+    font-size:inherit
+  }
+
+  .sc .slab {
+    font-size:13px
+  }
+
+  /* Bottom sheet / modal */
+
+#sheet {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:40
+  }
+
+  #sheet.on {
+    display:flex
+  }
+
+  .sc {
+    background:var(--p);
+    border-top:1px solid var(--ln);
+    border-radius:18px 18px 0 0;
+    width:min(520px,100%);
+    max-height:88%;
+    overflow-y:auto;
+    padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));
+    animation:up .25s
+  }
+
+  @keyframes up {
+    from {
+    transform:translateY(40px);
+    opacity:0
+  }
+
+
+  }
+
+  .sc .card {
+    font-size:13px
+  }
+
+  .cardbox {
+    display:grid;
+    place-items:center;
+    margin-bottom:12px
+  }
+
+  .gh {
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin:16px 0 2px
+  }
+
+  .row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--ln)
+  }
+
+  .row .ico {
+    font-size:20px
+  }
+
+  .row small {
+    display:block;
+    color:var(--mu);
+    font-size:12px
+  }
+
+  .row b {
+    font-variant-numeric:tabular-nums
+  }
+</style>
+</head>
+<body>
+
+  <header><b class="logo">PACK RIPS</b><span class="cash" id="cash"></span>
+  </header>
+  <main>
+<section id="home" class="screen" style="justify-content:center">
+ <h1>Open packs.<br>Chase the rare ones.</h1><p class="sub" id="stats"></p>
+ <div class="col"><button class="btn pri" id="go">Open Packs</button><button class="btn sec" id="daily"></button></div>
+</section>
+<section id="select" class="screen">
+ <h2>Choose a pack</h2><p class="sub">Swipe to browse, tap to select</p>
+ <div class="car" id="car"></div>
+ <div id="pinfo" style="text-align:center"></div>
+ <button class="btn pri" id="pick"></button><button class="lnk" id="pool">View drop pool</button>
+</section>
+<section id="open" class="screen" style="padding-top:4px">
+ <p class="sub" id="otxt"></p>
+ <div class="ostage"><div class="rp" id="rp"></div><i class="burst" id="burst"></i></div>
+ <button class="lnk" id="cancel">Cancel</button>
+</section>
+<section id="reveal" class="screen" style="padding:0 16px 12px">
+ <div id="cnt"></div><div class="rstage" id="stage"></div><div id="hint"></div>
+</section>
+<section id="sum" class="screen">
+ <h2>Pack opened</h2><p class="sub" id="best"></p>
+ <div class="grid" id="sgrid"></div>
+ <div class="col" style="margin-top:4px"><button class="btn pri" id="again">Open another</button></div>
+</section>
+<section id="col" class="screen">
+ <h2>Collection</h2><p class="sub" id="ccount"></p>
+ <button class="btn sec" id="sellall" style="min-width:0;padding:10px 16px"></button>
+ <p class="sub" style="font-size:12px;margin-top:10px">Tap a card to sell it</p><div class="grid" id="cgrid"></div>
+</section>
+<section id="grade" class="screen">
+ <h2>Grading</h2><p class="sub">Slab a card. The grade is a gamble.</p>
+ <div class="seg"><button data-g="raw">Cards</button><button data-g="slabs">Slabs</button></div>
+ <p class="sub" id="gsub"></p><button class="lnk" id="godds" style="margin-top:-6px">View grade odds</button>
+ <div class="grid" id="ggrid"></div>
+</section>
+
+  </main>
+  <nav id="nav">
+ <button data-s="home"><i data-lucide="house"></i>Home</button>
+ <button data-s="select"><i data-lucide="package"></i>Packs</button>
+ <button data-s="col"><i data-lucide="layers"></i>Cards</button>
+ <button data-s="grade"><i data-lucide="award"></i>Grade</button>
+
+  </nav>
+  <div id="sheet"><div class="sc" id="sbody"></div>
+  </div>
+  <div id="flash"></div>
+  <script>
+/* ===== GAME CONFIG: edit cards, images, values, packs and odds here =====
+   All money is in dollars. card.icon is a Lucide icon name; card.image (URL or data URI) replaces it when set.
+   card.value: what the card sells for. pack.cost: price to open. pack.odds: weight per rarity (same order as rarities).
+   grading.cost: fee to grade one card; each grade has a weight (chance) and a value multiplier. */
+const GAME={
+ startCash:1,dailyBonus:.5,
+ rarities:[
+  {label:'Common',color:'#9aa3b5',glow:0},{label:'Rare',color:'#3b9cff',glow:.5},{label:'Epic',color:'#b04dff',glow:1.2},
+  {label:'Legendary',color:'#ffb21e',glow:2},{label:'Mythic',color:'#ff3d6e',glow:3}],
+ packs:[
+  // Basketball pack tiers are listed from entry-level to premium.
+  {name:'Basketball Bronze Pack',cost:.2,count:3,icon:'circle',image:'',colors:['#c47a3a','#653719'],odds:[88,10.5,1.3,.2,0]},
+  {name:'Basketball Silver Pack',cost:.75,count:4,icon:'circle',image:'',colors:['#c9d2df','#586577'],odds:[60,32,6.5,1.4,.1]},
+  {name:'Basketball Gold Pack',cost:2.5,count:5,icon:'circle',image:'',colors:['#f5c542','#8d5b0b'],odds:[35,38,22,4.5,.5]},
+  {name:'Basketball Platinum Pack',cost:6.5,count:5,icon:'circle',image:'',colors:['#b9e3e8','#477b87'],odds:[15,30,35,18,2]},
+  {name:'Basketball Amethyst Pack',cost:12,count:5,icon:'circle',image:'',colors:['#c084fc','#54218a'],odds:[10,24,34,25,7]},
+  {name:'Basketball Diamond Pack',cost:18,count:5,icon:'circle',image:'',colors:['#8ee8ff','#17618b'],odds:[8,17,32,33,10]}],
+ grading:{cost:15,grades:[
+  {grade:10,label:'Gem Mint',weight:3,mult:8},{grade:9,label:'Mint',weight:12,mult:3},{grade:8,label:'Near Mint+',weight:25,mult:1.5},
+  {grade:7,label:'Near Mint',weight:25,mult:1},{grade:6,label:'Excellent',weight:15,mult:.8},{grade:5,label:'Very Good',weight:10,mult:.6},
+  {grade:4,label:'Good',weight:5,mult:.45},{grade:3,label:'Fair',weight:3,mult:.35},{grade:2,label:'Poor',weight:1.5,mult:.25},{grade:1,label:'Damaged',weight:.5,mult:.2}]},
+ cards:[
+  {name:'Marcus Vale',team:'Ironhawks',ovr:62,rarity:0,value:.02,icon:'dumbbell',image:''},
+  {name:'Dre Holloway',team:'Titans',ovr:65,rarity:0,value:.02,icon:'target',image:''},
+  {name:'Tito Alvarez',team:'Comets',ovr:68,rarity:0,value:.02,icon:'shield',image:''},
+  {name:'Jonah Pike',team:'Vipers',ovr:61,rarity:0,value:.02,icon:'flag',image:''},
+  {name:'Kenji Mori',team:'Blaze',ovr:70,rarity:0,value:.02,icon:'timer',image:''},
+  {name:'Ben Sutter',team:'Storm',ovr:64,rarity:0,value:.02,icon:'footprints',image:''},
+  {name:'Leo Brandt',team:'Wolves',ovr:67,rarity:0,value:.02,icon:'bike',image:''},
+  {name:'Cam Ortega',team:'Ironhawks',ovr:72,rarity:0,value:.02,icon:'mountain',image:''},
+  {name:'Ravi Shah',team:'Titans',ovr:63,rarity:0,value:.02,icon:'anchor',image:''},
+  {name:'Ty Dawson',team:'Comets',ovr:66,rarity:0,value:.02,icon:'compass',image:''},
+  {name:'Nico Ferro',team:'Vipers',ovr:69,rarity:0,value:.02,icon:'trophy',image:''},
+  {name:'Owen Black',team:'Blaze',ovr:60,rarity:0,value:.02,icon:'medal',image:''},
+  {name:'Jax Rivera',team:'Storm',ovr:74,rarity:1,value:.15,icon:'flame',image:''},
+  {name:'Mina Park',team:'Wolves',ovr:76,rarity:1,value:.15,icon:'zap',image:''},
+  {name:'Zeke Monroe',team:'Ironhawks',ovr:78,rarity:1,value:.15,icon:'dog',image:''},
+  {name:'Bo Larkin',team:'Titans',ovr:73,rarity:1,value:.15,icon:'bird',image:''},
+  {name:'Sasha Volk',team:'Comets',ovr:80,rarity:1,value:.15,icon:'cat',image:''},
+  {name:'Kai Nakamura',team:'Vipers',ovr:75,rarity:1,value:.15,icon:'rabbit',image:''},
+  {name:'Rico Santos',team:'Blaze',ovr:82,rarity:1,value:.15,icon:'swords',image:''},
+  {name:'Theo Grant',team:'Storm',ovr:77,rarity:1,value:.15,icon:'rocket',image:''},
+  {name:'Andre Fox',team:'Wolves',ovr:79,rarity:1,value:.15,icon:'car',image:''},
+  {name:'Blaze Carter',team:'Ironhawks',ovr:84,rarity:2,value:.6,icon:'ghost',image:''},
+  {name:'Nova Reyes',team:'Titans',ovr:86,rarity:2,value:.6,icon:'bot',image:''},
+  {name:'Titan Okafor',team:'Comets',ovr:88,rarity:2,value:.6,icon:'skull',image:''},
+  {name:'Viper Lang',team:'Vipers',ovr:85,rarity:2,value:.6,icon:'snowflake',image:''},
+  {name:'Storm Delacroix',team:'Blaze',ovr:90,rarity:2,value:.6,icon:'tornado',image:''},
+  {name:'Apex Morrow',team:'Storm',ovr:92,rarity:3,value:3,icon:'fish',image:''},
+  {name:'Phantom Cruz',team:'Wolves',ovr:94,rarity:3,value:3,icon:'crown',image:''},
+  {name:'King Valdez',team:'Ironhawks',ovr:96,rarity:3,value:3,icon:'gem',image:''},
+  {name:'The Comet',team:'Titans',ovr:99,rarity:4,value:15,icon:'sparkles',image:''}]
+};
+const $=s=>document.querySelector(s),R=GAME.rarities,CARDS=GAME.cards,PACKS=GAME.packs;
+const fmt=n=>'$'+n.toFixed(2),r2=n=>Math.round(n*100)/100;
+
+const ic=()=>{try{window.lucide&&lucide.createIcons({attrs:{'stroke-width':1.75}})}catch(e){}};
+CARDS.forEach((c,i)=>c.id=i);
+const G=GAME.grading,GR=G.grades;
+let S={cash:GAME.startCash,col:{},slabs:[],day:''};
+try{const o=JSON.parse(localStorage.getItem('packrips2')||'null');if(o)Object.assign(S,o);else{const old=JSON.parse(localStorage.getItem('packrips')||'null');if(old&&old.col)S.col=old.col}}catch(e){}
+
+const save=()=>{try{localStorage.setItem('packrips2',JSON.stringify(S))}catch(e){}};
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const art=o=>`<span class="ico">${o.image?`<img src="${o.image}" alt="">`:`<i data-lucide="${o.icon}"></i>`}</span>`;
+let scr='home',cur=0,P=PACKS[0],pull=[],idx=0;
+
+function cashUI(){$('#cash').textContent=fmt(S.cash);if(scr=='select')info()}
+
+function show(id){scr=id;['home','select','open','reveal','sum','col','grade'].forEach(s=>$('#'+s).classList.toggle('on',s==id));
+ $('#nav').classList.toggle('hide',id=='open'||id=='reveal');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s==id));
+ if(id=='home')$('#stats').textContent=`${Object.keys(S.col).length} / ${CARDS.length} cards collected${S.slabs.length?` · ${S.slabs.length} slabbed`:''}`;
+ if(id=='col')colUI();if(id=='grade')gradeUI();
+ cashUI();
+ if(id=='select')setTimeout(()=>{centerPack(cur);sel()},30)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
+
+function packInner(p){
+ const dots=p.odds.map((w,i)=>w?`<i style="background:${R[i].color}"></i>`:'').join('');
+ const basketball=`<svg class="basketball" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43"/><path d="M7 50h86M50 7v86M20 20c20 12 30 48 10 65M80 20C60 32 50 68 70 85"/></svg>`;
+ return`<div class="band"><span>COURTSIDE COLLECTIBLES</span><span>BB • SERIES 1</span></div>
+ <div class="court-mark" aria-hidden="true"></div><i class="edge l"></i><i class="edge r"></i>
+ <div class="pb"><div class="rays"></div><div class="ring">${basketball}</div>
+ <div class="pn">${p.name}</div><div class="tag">${p.count} PLAYER CARDS</div>
+ <div class="dots">${dots}</div><div class="price">${fmt(p.cost)}</div></div>
+ <div class="foot">BASKETBALL • TIER ${PACKS.indexOf(p)+1} OF ${PACKS.length}</div>`}
+
+function cardEl(c,f){const r=R[c.rarity],d=document.createElement('div');d.className='card'+(f?' f':'');d.style.cssText=`--rc:${r.color};--g:${r.glow}`;
+ d.innerHTML=`<div class="back">PR</div><div class="face"><div class="top"><b>${c.ovr}</b><span>${r.label}</span></div><div class="art">${art(c)}</div><div class="nm">${c.name}</div><div class="tm">${c.team}</div></div>`;return d}
+
+
+/* ===== MODALS: card actions and drop pool ===== */
+const sheet=$('#sheet'),sbody=$('#sbody');
+
+function openSheet(html,after){sbody.innerHTML=html;sheet.classList.add('on');after&&after();ic()}
+
+const closeSheet=()=>sheet.classList.remove('on');
+sheet.onclick=e=>{const a=e.target.closest('[data-a]');if(a)return act(a.dataset.a,a.dataset.id);if(e.target===sheet||e.target.closest('[data-x]'))closeSheet()};
+
+function openCard(c){const n=S.col[c.id];if(!n)return closeSheet();const r=R[c.rarity];
+ openSheet(`<div class="cardbox" id="cb"></div><h2>${c.name}</h2><p class="sub"><span style="color:${r.color}">${r.label}</span> · owned ×${n} · worth ${fmt(c.value)}</p>
+ <div class="col" style="margin-top:8px"><button class="btn pri" data-a="s1" data-id="${c.id}">Sell 1 · ${fmt(c.value)}</button>${n>1?`<button class="btn sec" data-a="sd" data-id="${c.id}">Sell ${n-1} duplicate${n>2?'s':''} · ${fmt((n-1)*c.value)}</button>`:''}<button class="btn sec" data-a="gp" data-id="${c.id}">Grade · ${fmt(G.cost)}</button><button class="lnk" data-x>Close</button></div>`,()=>$('#cb').append(cardEl(c,1)))}
+let gtab='raw';
+const gradeOf=s=>GR.find(g=>g.grade==s.grade),slabVal=s=>r2(CARDS[s.id].value*gradeOf(s).mult);
+const gcol=g=>g>=10?'#ffb21e':g>=9?'#4ade80':g>=7?'#3b9cff':g>=5?'#9aa3b5':'#ff5a5a';
+
+function slabEl(s,pend){const c=CARDS[s.id],d=document.createElement('div');d.className='slab';
+ d.innerHTML=`<div class="sl-l"><div><b>${c.name}</b><small>${R[c.rarity].label.toUpperCase()} · PR GRADED</small></div><div class="sl-g" style="border-color:${pend?'#999':gcol(s.grade)}"><b class="sg">${pend?'?':s.grade}</b><small>${pend?'':gradeOf(s).label}</small></div></div><div class="sl-c"></div>`;
+ d.querySelector('.sl-c').append(cardEl(c,1));return d}
+
+function gradeUI(){const g=$('#ggrid');g.innerHTML='';document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.g==gtab));
+ if(gtab=='raw'){const L=CARDS.filter(c=>S.col[c.id]).sort((a,b)=>b.rarity-a.rarity||a.id-b.id);
+  $('#gsub').textContent=L.length?`Tap a card to grade it · ${fmt(G.cost)} each`:'Open some packs first. You need cards to grade.';
+  L.forEach(c=>{const w=document.createElement('div');w.className='cwrap';w.append(cardEl(c,1));if(S.col[c.id]>1)w.insertAdjacentHTML('beforeend',`<b class="cnt">×${S.col[c.id]}</b>`);w.onclick=()=>openGradePrompt(c);g.append(w)})}
+ else{const L=S.slabs.slice().sort((a,b)=>slabVal(b)-slabVal(a));
+  $('#gsub').textContent=L.length?`${L.length} slab${L.length>1?'s':''} · worth ${fmt(L.reduce((a,s)=>a+slabVal(s),0))} · tap to sell`:'No slabs yet. Grade a card to make one.';
+  L.forEach(s=>{const w=document.createElement('div');w.className='cwrap';w.append(slabEl(s));w.onclick=()=>openSlab(s);g.append(w)})}
+ ic()}
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{gtab=b.dataset.g;gradeUI()});
+$('#godds').onclick=()=>openOdds();
+
+function openGradePrompt(c){const r=R[c.rarity],ms=GR.map(g=>g.mult);
+ openSheet(`<div class="cardbox" id="cb"></div><h2>${c.name}</h2><p class="sub"><span style="color:${r.color}">${r.label}</span> · raw value ${fmt(c.value)}</p><p class="sub" style="margin-top:0">Fee ${fmt(G.cost)}. The grade (1 to 10) is random and sets a value multiplier from ×${Math.min(...ms)} to ×${Math.max(...ms)}.</p>
+ <div class="col" style="margin-top:8px"><button class="btn pri" data-a="grade" data-id="${c.id}" ${S.cash<G.cost?'disabled':''}>${S.cash<G.cost?'Need '+fmt(G.cost):'Grade card · '+fmt(G.cost)}</button><button class="lnk" data-a="odds">View grade odds</button><button class="lnk" data-x>Close</button></div>`,()=>$('#cb').append(cardEl(c,1)))}
+
+function doGrade(id){const c=CARDS[id];if(!S.col[id]||S.cash<G.cost)return;
+ let t=0;GR.forEach(g=>t+=g.weight);let x=Math.random()*t,g=GR[GR.length-1];for(const q of GR){if((x-=q.weight)<=0){g=q;break}}
+ S.cash=r2(S.cash-G.cost);S.col[id]--;if(!S.col[id])delete S.col[id];
+ const s={uid:Date.now()+'-'+(Math.random()*1e6|0),id,grade:g.grade};S.slabs.push(s);save();cashUI();
+ openSheet(`<div class="cardbox" id="cb"></div><h2 id="gt">Grading…</h2><p class="sub" id="gs">Checking corners, edges, surface and centering</p><div class="col" id="gb" style="margin-top:8px"></div>`,()=>$('#cb').append(slabEl(s,1)));
+ const tm=setInterval(()=>{const e=$('#cb .sg');if(e)e.textContent=1+Math.random()*10|0},70);
+ setTimeout(()=>{clearInterval(tm);const e=$('#cb');if(!e)return;e.innerHTML='';e.append(slabEl(s));ic();
+  const v=slabVal(s),o=c.value,col=gcol(s.grade);
+  $('#gt').innerHTML=`<span style="color:${col}">${s.grade} · ${g.label}</span>`;
+  $('#gs').innerHTML=`${fmt(o)} → <b style="color:${v>=o?'#4ade80':'#ff5a5a'}">${fmt(v)}</b> (×${g.mult})`;
+  $('#gb').innerHTML=`<button class="btn pri" data-a="sslab" data-id="${s.uid}">Sell slab · ${fmt(v)}</button><button class="btn sec" data-x>Keep slab</button>`;
+  fx({rarity:s.grade>=10?4:s.grade>=9?3:s.grade>=7?1:0},col);gradeUI()},2200)}
+
+function openSlab(s){const c=CARDS[s.id],v=slabVal(s),g=gradeOf(s);
+ openSheet(`<div class="cardbox" id="cb"></div><h2>${c.name}</h2><p class="sub">Grade <b style="color:${gcol(s.grade)}">${s.grade} ${g.label}</b> · raw ${fmt(c.value)} → ${fmt(v)}</p><div class="col" style="margin-top:8px"><button class="btn pri" data-a="sslab" data-id="${s.uid}">Sell slab · ${fmt(v)}</button><button class="lnk" data-x>Close</button></div>`,()=>$('#cb').append(slabEl(s)))}
+
+function openOdds(){const t=GR.reduce((a,g)=>a+g.weight,0),ev=GR.reduce((a,g)=>a+g.weight*g.mult,0)/t;
+ openSheet(`<h2>Grade odds</h2><p class="sub">${fmt(G.cost)} per card · average multiplier ×${ev.toFixed(2)}</p>${GR.map(g=>`<div class="row"><b style="color:${gcol(g.grade)};width:28px">${g.grade}</b><span style="flex:1">${g.label}<small>value ×${g.mult}</small></span><b>${(g.weight/t*100).toFixed(1)}%</b></div>`).join('')}<div class="col"><button class="btn sec" data-x>Close</button></div>`)}
+
+function act(a,id){
+ if(a=='odds')return openOdds();
+ if(a=='gp')return openGradePrompt(CARDS[+id]);
+ if(a=='grade')return doGrade(+id);
+ if(a=='sslab'){const i=S.slabs.findIndex(s=>s.uid==id);if(i<0)return;const v=slabVal(S.slabs[i]);S.slabs.splice(i,1);S.cash=r2(S.cash+v);save();cashUI();gradeUI();return closeSheet()}
+ const c=CARDS[+id],n=S.col[id]||0,k=a=='s1'?1:n-1;if(k<=0)return;
+ S.col[id]-=k;if(S.col[id]<=0)delete S.col[id];S.cash=r2(S.cash+k*c.value);save();cashUI();colUI();openCard(c)}
+
+function openPool(p){const t=p.odds.reduce((a,b)=>a+b,0),pc=x=>(x*100).toFixed(x<.02?2:1)+'%';
+ let h=`<h2>${p.name} drop pool</h2><p class="sub">${p.count} cards · chance per card slot</p>`;
+ R.forEach((r,i)=>{if(!p.odds[i])return;const L=CARDS.filter(c=>c.rarity==i);
+  h+=`<div class="gh" style="color:${r.color}"><span>${r.label}</span><span>${pc(p.odds[i]/t)}</span></div>`;
+  L.forEach(c=>{h+=`<div class="row"><span style="color:${r.color}">${art(c)}</span><span style="flex:1">${c.name}<small>${c.team} · OVR ${c.ovr} · sells ${fmt(c.value)}</small></span><b>${pc(p.odds[i]/t/L.length)}</b></div>`})});
+ openSheet(h+'<div class="col"><button class="btn sec" data-x>Close</button></div>')}
+$('#pool').onclick=()=>openPool(PACKS[cur]);
+
+
+/* ===== HOME SCREEN / DAILY BONUS ===== */
+
+const today=()=>new Date().toDateString();
+
+function dUI(){const b=$('#daily');b.style.display=S.day===today()?'none':'';b.textContent=`Claim daily ${fmt(GAME.dailyBonus)}`}
+$('#daily').onclick=()=>{S.cash=r2(S.cash+GAME.dailyBonus);S.day=today();save();cashUI();dUI()};
+$('#go').onclick=()=>show('select');
+
+
+/* ===== PACK SELECTION ===== */
+const car=$('#car');
+PACKS.forEach((p,i)=>{const w=document.createElement('div'),k=document.createElement('div');w.className='pk';k.className='pack';k.style.cssText=`--c1:${p.colors[0]};--c2:${p.colors[1]}`;k.innerHTML=packInner(p);w.append(k);
+ w.onclick=()=>{if(i==cur)goOpen();else centerPack(i,1)};car.append(w)});
+
+function centerPack(i,sm){const e=car.children[i];car.scrollTo({left:e.offsetLeft-(car.clientWidth-e.offsetWidth)/2,behavior:sm?'smooth':'auto'})}
+
+function sel(){const cr=car.getBoundingClientRect(),m=cr.left+cr.width/2;let b=0,bd=1e9;
+ [...car.children].forEach((e,i)=>{const r=e.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-m);if(d<bd){bd=d;b=i}});
+ [...car.children].forEach((e,i)=>e.classList.toggle('act',i==b));if(b!==cur){cur=b;info()}}
+car.onscroll=()=>requestAnimationFrame(sel);
+
+function info(){const p=PACKS[cur],t=p.odds.reduce((a,b)=>a+b,0);
+ $('#pinfo').innerHTML=`<div class="sub" style="color:var(--tx);font-weight:600">${p.name} · ${p.count} cards</div><div class="chips">${p.odds.map((w,r)=>w?`<span class="chip" style="color:${R[r].color};border-color:${R[r].color}55">${R[r].label} ${(w/t*100).toFixed(w/t<.02?1:0)}%</span>`:'').join('')}</div>`;
+ const b=$('#pick');b.disabled=S.cash<p.cost;b.textContent=S.cash<p.cost?`Need ${fmt(p.cost)}`:`Open · ${fmt(p.cost)}`}
+$('#pick').onclick=goOpen;
+
+
+/* ===== PACK OPENING: drag to tear the wrapper ===== */
+const rp=$('#rp');let body,strip,dash,tp,prog=0,drag=false,done=false;
+
+function goOpen(){P=PACKS[cur];if(S.cash<P.cost)return;done=false;prog=0;drag=false;
+ rp.className='rp';rp.style.cssText=`--c1:${P.colors[0]};--c2:${P.colors[1]}`;
+ rp.innerHTML=`<div class="pack" id="pbody">${packInner(P)}</div><div class="strip" id="strip"></div><i class="dash" id="dash"></i><i class="tp" id="tp"></i>`;
+ body=$('#pbody');strip=$('#strip');dash=$('#dash');tp=$('#tp');$('#burst').className='burst';
+ $('#otxt').textContent='Drag across the top to rip it open';$('#cancel').style.display='';setP(0);show('open');ic()}
+
+function setP(p){prog=p;const n=Math.max(1,Math.round(p*24)),z=[];
+ for(let i=0;i<=n;i++)z.push([p*100*i/n,14+(i%2?1.2:-1.2)]);
+ const pc=z.map(a=>a[0].toFixed(1)+'% '+a[1].toFixed(1)+'%').join(',');
+ body.style.clipPath=p<=0?'none':`polygon(${pc},${p*100}% 0,100% 0,100% 100%,0 100%)`;
+ strip.style.clipPath=p<=0?'polygon(0 0,0 0,0 0)':`polygon(0 0,${p*100}% 0,${z.slice().reverse().map(a=>a[0].toFixed(1)+'% '+(a[1]/16*100).toFixed(1)+'%').join(',')})`;
+ strip.style.transformOrigin=`${p*100}% 100%`;strip.style.transform=`rotate(${p*30}deg) translateY(${-p*.5}em)`;
+ dash.style.left=p*100+'%';tp.style.left=p*100+'%'}
+rp.onpointerdown=e=>{if(done)return;const r=rp.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+ if(y>.45||Math.abs(x-prog)>.3)return;drag=true;rp.setPointerCapture(e.pointerId)};
+rp.onpointermove=e=>{if(!drag||done)return;const r=rp.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;
+ const np=Math.max(prog,Math.min(x,prog+.4,1));if(np!==prog){setP(np);if(Math.random()<.2)vib(6)}if(prog>=.96)rip()};
+rp.onpointerup=rp.onpointercancel=()=>{drag=false};
+$('#cancel').onclick=()=>show('select');
+
+function pick(w,min=0){let t=0;w.forEach((x,i)=>{if(i>=min)t+=x});let r=Math.random()*t;for(let i=min;i<w.length;i++)if(w[i]>0&&(r-=w[i])<=0)return i;return min}
+
+function roll(p){const rs=[];for(let i=0;i<p.count;i++)rs.push(pick(p.odds));rs.sort((a,b)=>a-b);
+ return rs.map(r=>{const L=CARDS.filter(c=>c.rarity==r);return L[Math.random()*L.length|0]})}
+
+function rip(){done=true;drag=false;setP(1);tp.style.display=dash.style.display='none';strip.classList.add('off');$('#otxt').textContent='';$('#cancel').style.display='none';
+ S.cash=r2(S.cash-P.cost);save();cashUI();pull=roll(P);
+ const b=$('#burst');b.style.setProperty('--bc',R[pull[pull.length-1].rarity].color);b.className='burst go';rp.classList.add('pop');vib([30,40,60]);setTimeout(startReveal,1500)}
+
+
+/* ===== CARD REVEAL ===== */
+const st=$('#stage');
+
+function startReveal(){show('reveal');st.innerHTML='';pull.forEach((c,i)=>{const w=document.createElement('div');w.className='cw';w.style.zIndex=100-i;w.append(cardEl(c));st.append(w)});idx=0;upd();ic()}
+
+function upd(){[...st.children].forEach((w,i)=>{const d=i-idx;w.style.transform=d<0?'translateY(-130%) rotate(14deg)':`translateY(${d*14}px) scale(${1-d*.05})`;w.style.opacity=d<0?0:d<3?1:0});
+ $('#cnt').textContent=`${Math.min(idx+1,pull.length)} / ${pull.length}`;$('#hint').textContent=idx<pull.length?'Tap the card to reveal':''}
+st.onclick=()=>{const w=st.children[idx];if(!w)return;const c=pull[idx],card=w.firstChild;
+ if(!card.classList.contains('f')){card.classList.add('f');const nw=!S.col[c.id];S.col[c.id]=(S.col[c.id]||0)+1;save();
+  $('#hint').innerHTML=(nw?'<b style="color:#4ade80">New card</b>':'<b style="color:var(--tx)">Duplicate</b>')+` · worth ${fmt(c.value)}<br><small>${idx==pull.length-1?'Tap to finish':'Tap for next'}</small>`;
+  setTimeout(()=>fx(c),400)}
+ else{idx++;upd();if(idx>=pull.length)setTimeout(summary,300)}};
+
+function fx(c,cc){const col=cc||R[c.rarity].color,f=$('#flash'),x=innerWidth/2,y=innerHeight*.45,n=[4,10,20,36,60][c.rarity];
+ f.style.background=`radial-gradient(circle at 50% 45%,${col},transparent 70%)`;f.className='';void f.offsetWidth;f.className='go'+(c.rarity>2?' big':'');
+ for(let i=0;i<n;i++){const p=document.createElement('i'),a=Math.random()*6.28,d=80+Math.random()*(120+c.rarity*40);p.className='pt';p.style.cssText=`left:${x}px;top:${y}px;background:${col};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px`;document.body.append(p);setTimeout(()=>p.remove(),1000)}
+ if(c.rarity>2){document.body.classList.add('shake');setTimeout(()=>document.body.classList.remove('shake'),500)}vib(10+c.rarity*25)}
+
+
+/* ===== SUMMARY AND COLLECTION ===== */
+
+function summary(){const g=$('#sgrid');g.innerHTML='';pull.forEach(c=>g.append(cardEl(c,1)));const b=pull[pull.length-1];
+ $('#best').innerHTML=`Best pull: <b style="color:${R[b.rarity].color}">${b.name}</b> · pack worth ${fmt(pull.reduce((a,c)=>a+c.value,0))}`;show('sum');ic()}
+$('#again').onclick=()=>show('select');
+
+function colUI(){const g=$('#cgrid');g.innerHTML='';let o=0,tv=0,dv=0;
+ CARDS.slice().sort((a,b)=>b.rarity-a.rarity||a.id-b.id).forEach(c=>{const w=document.createElement('div'),n=S.col[c.id];w.className='cwrap';
+  if(n){o++;tv+=n*c.value;dv+=(n-1)*c.value;w.append(cardEl(c,1));if(n>1)w.insertAdjacentHTML('beforeend',`<b class="cnt">×${n}</b>`);w.onclick=()=>openCard(c)}else w.innerHTML='<div class="lk"><i data-lucide="lock"></i></div>';g.append(w)});
+ $('#ccount').textContent=`${o} / ${CARDS.length} collected · worth ${fmt(tv)}`;
+ const sa=$('#sellall');sa.style.display=dv>0?'':'none';sa.textContent=`Sell all duplicates · ${fmt(dv)}`;ic()}
+$('#sellall').onclick=()=>{let t=0;CARDS.forEach(c=>{const n=S.col[c.id]||0;if(n>1){t+=(n-1)*c.value;S.col[c.id]=1}});if(t){S.cash=r2(S.cash+t);save();cashUI();colUI()}};
+dUI();show('home');ic();
+  </script>
+</body>
+</html>
